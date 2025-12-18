@@ -2,10 +2,12 @@ package com.educandoweb.course.config;
 
 import com.educandoweb.course.entities.Category;
 import com.educandoweb.course.entities.Order;
+import com.educandoweb.course.entities.Product;
 import com.educandoweb.course.entities.User;
 import com.educandoweb.course.entities.enums.OrderStatus;
 import com.educandoweb.course.repositories.CategoryRepository;
 import com.educandoweb.course.repositories.OrderRepository;
+import com.educandoweb.course.repositories.ProductRepository;
 import com.educandoweb.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public void run(String... args) throws Exception {
         User u1 = new User(null, "123456", "988888888", "Maria Brown", "maria@gmail.com");
@@ -37,11 +42,22 @@ public class TestConfig implements CommandLineRunner {
         Order o2 = new Order(null,  u2, OrderStatus.WAITING_PAYMENT,Instant.parse("2019-07-21T03:42:10Z"));
         Order o3 = new Order(null,  u1, OrderStatus.WAITING_PAYMENT ,Instant.parse("2019-07-22T15:21:22Z"));
 
-
         Category cat1 = new Category(null, "Electronics");
         Category cat2 = new Category(null, "Books");
         Category cat3 = new Category(null, "Computers");
 
+        Product p1 = new Product(" ", 90.5, "Lorem ipsum dolor sit amet, consectetur.",
+                "The Lord of the Rings", null);
+        Product p2 = new Product(" ", 2190.0, "Nulla eu imperdiet purus. Maecenas ante.",
+                "Smart TV" , null);
+        Product p3 = new Product(" ", 1250.0, "Nam eleifend maximus tortor, at mollis.",
+                "Macbook Pro", null);
+        Product p4 = new Product(" ", 1200.0, "Donec aliquet odio ac rhoncus cursus.",
+                "PC Gamer", null);
+        Product p5 = new Product(" ", 100.99, "Cras fringilla convallis sem vel faucibus.",
+                "Rails for Dummies", null);
+
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4 ,p5));
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
