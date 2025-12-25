@@ -1,5 +1,4 @@
-# Big Game Survey 
-[![NPM](https://github.com/GabrielWodtke/workshop-springboot-jpa/blob/main/LICENSE) 
+
 
 # Sobre o projeto
 
